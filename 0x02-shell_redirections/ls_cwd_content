@@ -1,0 +1,17 @@
+total 68
+drwxr-xr-x 2 root root   282 Jun 28 05:17 .
+drwxr-xr-x 5 root root    74 Jun 27 18:15 ..
+-rwxr--r-- 1 root root    32 Jun 27 18:54 0-hello_world
+-rwxr--r-- 1 root root    28 Jun 28 04:58 1-confused_smiley
+-rw-r--r-- 1 root root 12288 Jun 28 03:41 .1-confused_smiley.swp
+-rwxr--r-- 1 root root    28 Jun 27 19:35 2-hellofile
+-rwxr--r-- 1 root root    39 Jun 27 19:45 3-twofiles
+-rwxr--r-- 1 root root    35 Jun 27 19:53 4-lastlines
+-rwxr--r-- 1 root root    35 Jun 27 20:12 5-firstlines
+-rwxr--r-- 1 root root    41 Jun 27 20:40 6-third_line
+-rwxr--r-- 1 root root    71 Jun 28 05:03 7-file
+-rw-r--r-- 1 root root 12288 Jun 27 20:54 .7-file.swp
+-rwxr--r-- 1 root root    36 Jun 28 05:17 8-cwd_state
+-rw-r--r-- 1 root root    51 Jun 27 20:33 iacta
+-rw-r--r-- 1 root root     0 Jun 28 05:17 ls_cwd_content
+-rw-r--r-- 1 root root    27 Jun 27 18:16 README.md
