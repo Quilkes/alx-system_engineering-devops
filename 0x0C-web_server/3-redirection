@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Redirects to another page
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo 'Holberton School for the win!' | sudo tee /var/www/html/index.nginx-debian.html
+var="rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "35i$var" /etc/nginx/sites-available/default
+sudo service nginx start
