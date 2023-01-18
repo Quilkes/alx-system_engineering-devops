@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#Configure a brand new Ubuntu machine to have identical webservers but custom Nginx response headers
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
+var="\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "35i \ $var" /etc/nginx/sites-available/default
+sudo touch /var/www/html/404.html
+echo -e '<!DOCTYPE html>'"\n<html>\n<body>\n<center>\n<h1>Error 404</h1>\n<h2>Ceci n'est pas une page</h2>\n<a href=\"https://ibb.co/0Zmrrcx\"><img src=\"https://i.ibb.co/4MKpp7H/Page-Not-Found.png\" alt=\"Page-Not-Found\" class=\"border\"></a>\n</center>\n<style>\nbody {background-color: mistyrose;}\nh2{color: DarkBlue;}\nh1{color: Red;}\n.border{border-color:#a349a4; border-width:6; border-style:solid;}\n</style>\n</body>\n</html>\n" | sudo tee /var/www/html/404.html
+var2="\terror_page 404 /404.html;"
+sudo sed -i "36i \ $var2" /etc/nginx/sites-available/default
+var3="\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}"
+sudo sed -i "44i \ $var3" /etc/nginx/sites-available/default
+var4="\tadd_header X-Served-By: $HOSTNAME;\n"
+sudo sed -i "44i \ $var4" /etc/nginx/sites-available/default
+sudo service nginx start
