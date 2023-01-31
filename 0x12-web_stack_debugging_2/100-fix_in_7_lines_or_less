@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Make nginx be running as the nginx user, and change all active IPs on port 8080, exact copy as task 1
+pkill -f apache2
+chmod 777 /etc/nginx/nginx.conf
+sudo sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default
+sudo -u nginx nginx
+sudo service nginx start
