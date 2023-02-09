@@ -1,25 +1,18 @@
 #!/usr/bin/python3
-'''
-A script to export data in the JSON format
-'''
+"""Exports to-do list information of all employees to JSON format."""
 import json
 import requests
 
-if __name__ == '__main__':
-    url = "https://jsonplaceholder.typicode.com/users"
-    us = requests.get(url, verify=False).json()
-    undoc = {}
-    udoc = {}
-    for user in us:
-        uid = user.get("id")
-        udoc[uid] = []
-        undoc[uid] = user.get("username")
-    url = "https://jsonplaceholder.typicode.com/todos"
-    todo = requests.get(url, verify=False).json()
-    [udoc.get(t.get("userId")).append({"task": t.get("title"),
-                                       "completed": t.get("completed"),
-                                       "username": undoc.get(
-                                               t.get("userId"))})
-     for t in todo]
-    with open("todo_all_employees.json", 'w') as jsf:
-        json.dump(udoc, jsf)
+if __name__ == "__main__":
+    url = "https://jsonplaceholder.typicode.com/"
+    users = requests.get(url + "users").json()
+
+    with open("todo_all_employees.json", "w") as jsonfile:
+        json.dump({
+            u.get("id"): [{
+                "task": t.get("title"),
+                "completed": t.get("completed"),
+                "username": u.get("username")
+            } for t in requests.get(url + "todos",
+                                    params={"userId": u.get("id")}).json()]
+            for u in users}, jsonfile)
